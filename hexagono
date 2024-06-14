@@ -1,0 +1,32 @@
+//Jair Alejandro Gutierrez Gonzalez Equipo 3 Grupo 1 
+#include <iostream>
+using namespace std;
+
+void drawHexagon(int size) {
+    if (size < 1) {
+        cout << "El tamaño debe ser un entero positivo." << endl;
+        return;
+    }
+
+   
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size - i - 1; j++) cout << ' ';
+        for (int j = 0; j < size + 2 * i; j++) cout << '*';
+        cout << endl;
+    }
+
+
+    for (int i = size - 2; i >= 0; i--) {
+        for (int j = 0; j < size - i - 1; j++) cout << ' ';
+        for (int j = 0; j < size + 2 * i; j++) cout << '*';
+        cout << endl;
+    }
+}
+
+int main() {
+    int size;
+    cout << "Ingrese el tamaño del hexágono: ";
+    cin >> size;
+    drawHexagon(size);
+    return 0;
+}

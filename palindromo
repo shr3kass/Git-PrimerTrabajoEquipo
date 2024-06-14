@@ -1,0 +1,29 @@
+// Jonathan Agustin Camacho Equipo 3 Grupo 2
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+bool esPalindromo(const string& oracion) {
+    string cleaned;
+    for (char c : oracion) {
+        if (c != ' ') {
+            cleaned += tolower(c);
+        }
+    }
+    string reversed = cleaned;
+    reverse(reversed.begin(), reversed.end());
+    return cleaned == reversed;
+}
+
+int main() {
+    string oracion;
+    cout << "Ingrese una oración: ";
+    getline(cin, oracion);
+    if (esPalindromo(oracion)) {
+        cout << "La oración es un palíndromo." << endl;
+    } else {
+        cout << "La oración no es un palíndromo." << endl;
+    }
+    return 0;
+}

@@ -1,0 +1,34 @@
+//Jonathan Agustin Camacho Equipo 3 Grupo 4
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<pair<int, int>> movimientosCaballo(int x, int y) {
+    vector<pair<int, int>> movimientos = {
+        {x+2, y+1}, {x+2, y-1}, {x-2, y+1}, {x-2, y-1},
+        {x+1, y+2}, {x+1, y-2}, {x-1, y+2}, {x-1, y-2}
+    };
+    vector<pair<int, int>> movimientosValidos;
+    for (auto& movimiento : movimientos) {
+        if (movimiento.first >= 1 && movimiento.first <= 8 && movimiento.second >= 1 && movimiento.second <= 8) {
+            movimientosValidos.push_back(movimiento);
+        }
+    }
+    return movimientosValidos;
+}
+
+int main() {
+    int x, y;
+    cout << "Ingrese la coordenada x del caballo (1-8): ";
+    cin >> x;
+    cout << "Ingrese la coordenada y del caballo (1-8): ";
+    cin >> y;
+
+    vector<pair<int, int>> movimientos = movimientosCaballo(x, y);
+    cout << "El caballo puede moverse a las siguientes posiciones: ";
+    for (auto& movimiento : movimientos) {
+        cout << "(" << movimiento.first << ", " << movimiento.second << ") ";
+    }
+    cout << endl;
+    return 0;
+}
