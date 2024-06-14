@@ -1,0 +1,131 @@
+//Jair Alejandro Gutierrez Gonzalez Equipo 3 Grupo 1 
+#include <iostream>
+using namespace std;
+
+void drawHexagon(int size) {
+    if (size < 1) {
+        cout << "El tamaño debe ser un entero positivo." << endl;
+        return;
+    }
+
+   
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size - i - 1; j++) cout << ' ';
+        for (int j = 0; j < size + 2 * i; j++) cout << '*';
+        cout << endl;
+    }
+
+
+    for (int i = size - 2; i >= 0; i--) {
+        for (int j = 0; j < size - i - 1; j++) cout << ' ';
+        for (int j = 0; j < size + 2 * i; j++) cout << '*';
+        cout << endl;
+    }
+}
+
+int main() {
+    int size;
+    cout << "Ingrese el tamaño del hexágono: ";
+    cin >> size;
+    drawHexagon(size);
+    return 0;
+}
+// Jonathan Agustin Camacho Equipo 3 Grupo 2
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+bool esPalindromo(const string& oracion) {
+    string cleaned;
+    for (char c : oracion) {
+        if (c != ' ') {
+            cleaned += tolower(c);
+        }
+    }
+    string reversed = cleaned;
+    reverse(reversed.begin(), reversed.end());
+    return cleaned == reversed;
+}
+
+int main() {
+    string oracion;
+    cout << "Ingrese una oración: ";
+    getline(cin, oracion);
+    if (esPalindromo(oracion)) {
+        cout << "La oración es un palíndromo." << endl;
+    } else {
+        cout << "La oración no es un palíndromo." << endl;
+    }
+    return 0;
+}
+
+//Jair Alejandro Gutierrez Gonzalez Equipo 3 Grupo 3
+#include <iostream>
+#include <vector>
+using namespace std;
+
+bool esPrimo(int n) {
+    if (n <= 1) return false;
+    for (int i = 2; i * i <= n; i++) {
+        if (n % i == 0) return false;
+    }
+    return true;
+}
+
+vector<int> primosMenoresQue(int m) {
+    vector<int> primos;
+    for (int i = 2; i < m; i++) {
+        if (esPrimo(i)) {
+            primos.push_back(i);
+        }
+    }
+    return primos;
+}
+
+int main() {
+    int m;
+    cout << "Ingrese el valor de m: ";
+    cin >> m;
+    vector<int> primos = primosMenoresQue(m);
+    cout << "Números primos menores que " << m << ": ";
+    for (int primo : primos) {
+        cout << primo << " ";
+    }
+    cout << endl;
+    return 0;
+}
+//Jonathan Agustin Camacho Equipo 3 Grupo 4
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<pair<int, int>> movimientosCaballo(int x, int y) {
+    vector<pair<int, int>> movimientos = {
+        {x+2, y+1}, {x+2, y-1}, {x-2, y+1}, {x-2, y-1},
+        {x+1, y+2}, {x+1, y-2}, {x-1, y+2}, {x-1, y-2}
+    };
+    vector<pair<int, int>> movimientosValidos;
+    for (auto& movimiento : movimientos) {
+        if (movimiento.first >= 1 && movimiento.first <= 8 && movimiento.second >= 1 && movimiento.second <= 8) {
+            movimientosValidos.push_back(movimiento);
+        }
+    }
+    return movimientosValidos;
+}
+
+int main() {
+    int x, y;
+    cout << "Ingrese la coordenada x del caballo (1-8): ";
+    cin >> x;
+    cout << "Ingrese la coordenada y del caballo (1-8): ";
+    cin >> y;
+
+    vector<pair<int, int>> movimientos = movimientosCaballo(x, y);
+    cout << "El caballo puede moverse a las siguientes posiciones: ";
+    for (auto& movimiento : movimientos) {
+        cout << "(" << movimiento.first << ", " << movimiento.second << ") ";
+    }
+    cout << endl;
+    return 0;
+}
